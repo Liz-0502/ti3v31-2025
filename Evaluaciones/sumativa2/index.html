@@ -1,0 +1,144 @@
+<html>
+    <head><link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" href="css/styles.css"/>
+    
+           
+    </head>
+
+    <body>
+
+        <h1> 
+            Taller Raíces Urbanas
+            <img src="assets/8B3A1878-scaled.jpg" />
+        </h1>
+        
+
+        <h2>TALLER DANZA</h2>
+        <p>Los invitamos a ser parte de nuestro grupo de baile:</p>
+        <ul>
+            <li>Miercoles y Viernes</li>
+            <li>19:00 hasta 20:30</li>
+            
+        </ul>
+        <h2>TALLER DE TEATRO</h2>
+        <p>Explora el mundo del teatro, con habilidades de expresión corporal y vocal, aprendiendo en un ambiente divertido y colaborativo.:</p>
+        <ul>
+            <li>Lunes y Jueves</li>
+            <li>16:00 hasta 19:30</li>
+        </ul>
+
+        <h2>TALLER DE ARTES</h2>
+        <p>Aprende técnicas de dibujo, pintura y expresión visual para plasmar tus ideas y emociones.:</p>
+        <ul>
+            <li>Martes  y Sabados</li>
+            <li>17:00 hasta 16:30</li>
+        </ul> 
+        <h2>INSCRIBETE</h2>
+        
+    
+    </body>
+
+</script>
+    <form id="formulario">
+  <p>
+    Nombres:<br>
+    <input type="text" id="nombres">
+  </p>
+  <p>
+    Apellidos:<br>
+    <input type="text" id="apellidos">
+  </p>
+  <p>
+    RUT (formato 12345678-9):<br>
+    <input type="text" id="rut">
+  </p>
+  <p>
+    Fecha de Nacimiento (dd/mm/aaaa):<br>
+    <input type="text" id="fechaNacimiento">
+  </p>
+  <p>
+    Taller de Interés:<br>
+    <input type="text" id="taller">
+  </p>
+  <p>
+    Correo Electrónico:<br>
+    <input type="text" id="correo">
+  </p>
+  <p>
+    Observaciones:<br>
+    <textarea id="observaciones"></textarea>
+  </p>
+
+  <button type="submit">Registrar</button>
+  <p id="mensaje" style="color: red;"></p>
+  
+    <p>Más Información en Talleres Danza UV21</p>
+        <a href=https://www.inacap.cl"><img src="assets/rrss_facebook.png" height="30"></a>
+        <a href="https://www.inacap.cl"><img src="assets/rrss_instagram.png" height="30"></a>
+
+        <a href="https://www.inacap.cl"><img src="assets/rrss_linkedin.png" height="30"></a>  
+
+  <script>
+  document.getElementById("formulario").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let nombres = document.getElementById("nombres").value.trim();
+    let apellidos = document.getElementById("apellidos").value.trim();
+    let rut = document.getElementById("rut").value.trim();
+    let fecha = document.getElementById("fechaNacimiento").value.trim();
+    let taller = document.getElementById("taller").value.trim();
+    let correo = document.getElementById("correo").value.trim();
+    let mensaje = document.getElementById("mensaje");
+
+    if (!nombres || !apellidos || !rut || !fecha || !taller || !correo) {
+      mensaje.textContent = "Por favor, completa todos los campos obligatorios.";
+      return;
+    }
+
+    if (!/^[0-9]{7,8}-[0-9kK]$/.test(rut)) {
+      mensaje.textContent = "El RUT no tiene el formato correcto.";
+      return;
+    }
+
+    let partes = fecha.split("/");
+    if (partes.length !== 3) {
+      mensaje.textContent = "La fecha debe estar en formato dd/mm/aaaa.";
+      return;
+    }
+
+    let dia = parseInt(partes[0]);
+    let mes = parseInt(partes[1]);
+    let anio = parseInt(partes[2]);
+
+    let hoy = new Date();
+    let fechaNacimiento = new Date(anio, mes - 1, dia);
+    let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+
+    if (hoy.getMonth() < (mes - 1) || (hoy.getMonth() === (mes - 1) && hoy.getDate() < dia)) {
+      edad--;
+    }
+
+    if (isNaN(edad) || edad < 14) {
+      mensaje.textContent = "Debes tener al menos 14 años para postular.";
+      return;
+    }
+
+    if (!/^[^@\\s]+@[^@\\s]+\\.[a-zA-Z]{2,}$/.test(correo)) {
+      mensaje.textContent = "El correo electrónico no es válido.";
+      return;
+    }
+
+    mensaje.style.color = "green";
+    mensaje.textContent = "Formulario enviado correctamente.";
+    this.reset();
+  });
+
+</script>
+</form>
+</html>
+
+
